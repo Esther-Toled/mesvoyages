@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Environnement;
 use App\Entity\Visite;
 use DateTime;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,11 +19,11 @@ class VisiteType extends AbstractType
         $builder
             ->add('ville')
             ->add('pays')
-            ->add('datecreation', null, [
-            /**->add('datecreation', DateType::class,[
+            ->add('datecreation', DateType::class, [
                 'widget' => 'single_text',
-                'data' => isset($options['data'])&& $options['data']->getDateCreation() != null ? $options['data']->getDateCreation() : new DateTime('now'),
-                'label' => 'date'**/
+                'data' => isset($options['data']) &&
+                    $options['data']->getDateCreation() != null ? $options['data']->getDateCreation() : new DateTime('now'),
+                'label' => 'date'
             ])
             ->add('note')
             ->add('avis')
@@ -30,6 +32,12 @@ class VisiteType extends AbstractType
             ])
             ->add('tempmax', null, [
                 'label' => 't° max'
+            ])
+            ->add('environnements', EntityType::class, [
+                'class' => Environnement::class,
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'required' => false
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer'
