@@ -18,10 +18,10 @@ class VisiteType extends AbstractType
             ->add('ville')
             ->add('pays')
             ->add('datecreation', null, [
-            ->add('datecreation', DateType::class,[
+            /**->add('datecreation', DateType::class,[
                 'widget' => 'single_text',
                 'data' => isset($options['data'])&& $options['data']->getDateCreation() != null ? $options['data']->getDateCreation() : new DateTime('now'),
-                'label' => 'date'
+                'label' => 'date'**/
             ])
             ->add('note')
             ->add('avis')
