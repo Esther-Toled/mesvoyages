@@ -15,7 +15,16 @@ class EnvironnementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Environnement::class);
     }
-
+    /**
+     * Supprime un environnement
+     * @param Environnement $environnement
+     * @return void
+     */
+    public function remove(Environnement $environnement): void
+    {
+        $this->getEntityManager()->remove($environnement);
+        $this->getEntityManager()->flush();
+    }   
     //    /**
     //     * @return Environnement[] Returns an array of Environnement objects
     //     */
@@ -30,7 +39,16 @@ class EnvironnementRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
-
+    /**
+     * Ajoute un environnement
+     * @param Environnement $environnement
+     * @return void
+     */
+    public function add(Environnement $environnement): void
+    {
+        $this->getEntityManager()->persist($environnement);
+        $this->getEntityManager()->flush();
+    } 
     //    public function findOneBySomeField($value): ?Environnement
     //    {
     //        return $this->createQueryBuilder('e')
