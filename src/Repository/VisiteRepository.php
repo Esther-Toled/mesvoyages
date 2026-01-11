@@ -20,21 +20,19 @@ class VisiteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Visite::class);
     }
-    
-    
+
     /**
      * Supprime une visite
      * @param Visite $visite
      * @return void
      */
-
     public function remove(Visite $visite): void
     {
         $this->getEntityManager()->remove($visite);
         $this->getEntityManager()->flush();
-    } 
+    }    
     
-        /**
+    /**
      * Ajoute ou modifie une visite
      * @param Visite $visite
      * @return void
@@ -43,23 +41,9 @@ class VisiteRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->persist($visite);
         $this->getEntityManager()->flush();
-    }  
-    //    /**
-    //     * @return Visite[] Returns an array of Visite objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('v.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-        /**
+    }    
+    
+    /**
      * Retourne toutes les visites triées sur un champ
      * @param type $champ
      * @param type $ordre
@@ -71,6 +55,7 @@ class VisiteRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
+
     /**
      * Retourne les visites dont un champ est égal à une valeur
      * @param type $champ
@@ -92,13 +77,5 @@ class VisiteRepository extends ServiceEntityRepository
                     ->getResult();                   
         }
     }
-    //    public function findOneBySomeField($value): ?Visite
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    
 }

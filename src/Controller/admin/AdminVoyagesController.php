@@ -77,6 +77,6 @@ class AdminVoyagesController extends AbstractController {
             'visite' => $visite,
             'formvisite' => $formVisite->createView()
         ]);
-    }    
-
+    }   
+   
 }
