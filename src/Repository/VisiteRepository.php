@@ -78,4 +78,12 @@ class VisiteRepository extends ServiceEntityRepository
         }
     }
     
+    public function findTwoLastTravel() :array{
+        return $this->createQueryBuilder('v')
+                ->orderBy('v.datecreation','DESC')
+                ->setMaxResults(2)
+                ->getQuery()
+                ->getResult();
+    }
+    
 }
