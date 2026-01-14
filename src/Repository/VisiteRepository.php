@@ -62,12 +62,27 @@ class VisiteRepository extends ServiceEntityRepository
      * @param type $valeur
      * @return Visite[]
      */
+    
+    /**
+     * Retourne les visites filtrées par environnement
+     * @param string $valeur
+     * @return Visite[]
+     */
+   
     public function findByEqualValue($champ, $valeur): array{
         if($valeur==""){
             return $this->createQueryBuilder('v')
                     ->orderBy('v.'.$champ, 'ASC')
                     ->getQuery()
                     ->getResult();            
+        }if($champ=='environnement'){
+            return $this->createQueryBuilder('v')
+                    ->join('v.environnements','e')
+                    ->where('e.nom = :valeur')
+                    ->setParameter('valeur', $valeur)
+                    ->orderBy('v.datecreation', 'DESC')
+                    ->getQuery()
+                    ->getResult();
         }else{
             return $this->createQueryBuilder('v')
                     ->where('v.'.$champ.'=:valeur')
@@ -77,6 +92,8 @@ class VisiteRepository extends ServiceEntityRepository
                     ->getResult();                   
         }
     }
+    
+    
     
     public function findTwoLastTravel() :array{
         return $this->createQueryBuilder('v')
