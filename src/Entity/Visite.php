@@ -31,6 +31,7 @@ class Visite
     private ?\DateTimeInterface $datecreation = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(min:0,max:20)]
     private ?int $note = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
