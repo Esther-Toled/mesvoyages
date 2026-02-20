@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Description of ContactController
  *
- * @author emds
+ * @author toled
  */
 class ContactController extends AbstractController {
 
@@ -35,23 +35,21 @@ class ContactController extends AbstractController {
             'formcontact' => $formContact->createView()
         ]);
     }
-     public function sendEmail(MailerInterface $mailer, Contact $contact){
+    
+    public function sendEmail(MailerInterface $mailer, Contact $contact){
         $email = (new Email())
             ->from($contact->getEmail())
-            ->to('contact@mesvoyages.com')            
+            ->to('contact@mesvoyages.com')
             ->subject('Message du site de voyages')
             ->html($this->renderView(
-                    'pages/_email.html.twig',[
-                        'contact'=>$contact
+                    'pages/_email.html.twig', [
+                        'contact' => $contact
                     ]
                 ),
                 'utf-8'
             )
         ;
-
         $mailer->send($email);
-
-        // ...
     }
     
 }

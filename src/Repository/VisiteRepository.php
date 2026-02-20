@@ -75,7 +75,8 @@ class VisiteRepository extends ServiceEntityRepository
                     ->orderBy('v.'.$champ, 'ASC')
                     ->getQuery()
                     ->getResult();            
-        }if($champ=='environnement'){
+        }
+        if($champ=='environnement'){
             return $this->createQueryBuilder('v')
                     ->join('v.environnements','e')
                     ->where('e.nom = :valeur')
@@ -83,7 +84,8 @@ class VisiteRepository extends ServiceEntityRepository
                     ->orderBy('v.datecreation', 'DESC')
                     ->getQuery()
                     ->getResult();
-        }else{
+        }
+        else{
             return $this->createQueryBuilder('v')
                     ->where('v.'.$champ.'=:valeur')
                     ->setParameter('valeur', $valeur)
